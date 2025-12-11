@@ -40,7 +40,7 @@ const App = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginForm),
@@ -66,7 +66,7 @@ const App = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/register`, {
+      const response = await fetch(`${API_BASE_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(registerForm),
@@ -97,7 +97,7 @@ const App = () => {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/files/upload_file`, {
+      const response = await fetch(`${API_BASE_URL}/upload_file`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData,
@@ -121,7 +121,7 @@ const App = () => {
   const fetchFiles = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/files/view_files`, {
+      const response = await fetch(`${API_BASE_URL}/view_files`, {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       const data = await response.json();
@@ -139,7 +139,7 @@ const App = () => {
     setError('');
     try {
       const response = await fetch(
-        `${API_BASE_URL}/files/read_file?file_id=${fileId}&page=${currentPage}&page_size=${pageSize}`,
+        `${API_BASE_URL}/read_file?file_id=${fileId}&page=${currentPage}&page_size=${pageSize}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
       const data = await response.json();
@@ -159,7 +159,7 @@ const App = () => {
     if (!window.confirm('Are you sure you want to delete this file?')) return;
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/files/delete_file/${fileId}`, {
+      const response = await fetch(`${API_BASE_URL}/delete_file/${fileId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });
